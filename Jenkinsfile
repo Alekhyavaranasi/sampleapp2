@@ -48,8 +48,8 @@ spec:
         }
         stage('docker login') {
        steps {
-           withCredentials([string(credentialsId: 'dockerhub', variable: 'docker1')]) {
-               sh 'docker login -u alekhya277 -p ${docker1}'
+           withCredentials([file(credentialsId: 'secret', variable: 'docker')]) {
+               sh 'use $docker'
   }
         }
     }
