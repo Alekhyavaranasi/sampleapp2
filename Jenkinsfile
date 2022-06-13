@@ -51,7 +51,7 @@ spec:
            withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pass', usernameVariable: 'user')]) {
     // some block
 }
-           sh ' docker login --username= $ user --password= $ pass '
+           sh ' docker login --username= $user --password= $pass '
         }
     }
     stage('docker push') {
