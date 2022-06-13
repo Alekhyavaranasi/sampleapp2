@@ -48,7 +48,10 @@ spec:
         }
         stage('docker login') {
        steps {
-            sh 'docker login -u alekhya277 -p Perigord!22'
+           withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'pass', usernameVariable: 'user')]) {
+    // some block
+}
+           sh 'docker login --username="${user}" --password="${pass}" '
         }
     }
     stage('docker push') {
