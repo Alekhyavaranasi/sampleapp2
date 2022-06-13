@@ -40,7 +40,10 @@ spec:
             defaultContainer 'shell'
         }
     }
-    stages {
+        environment {
+         DOCKERHUB_CREDENTIALS = credentials('secretkey')
+        }
+    stages{
         stage('docker build') {
             steps {
                 sh 'docker build -t alekhya277/sampleapp:latest .'
@@ -48,8 +51,7 @@ spec:
         }
         stage('docker login') {
             steps{
-                withCredentials([file(credentialsId: 'secret', variable: 'docker')]) {
-                 sh 'use ${docker}'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                }
           }
     }
