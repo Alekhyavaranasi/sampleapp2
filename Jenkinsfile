@@ -47,13 +47,11 @@ spec:
             }
         }
         stage('docker login') {
-        environment {
-           withCredentials([file(credentialsId: 'secret', variable: 'docker')]) {
-               steps{
+            steps{
+                withCredentials([file(credentialsId: 'secret', variable: 'docker')]) {
                  sh 'use ${docker}'
                }
-           }
-        }
+          }
     }
     stage('docker push') {
         steps {
