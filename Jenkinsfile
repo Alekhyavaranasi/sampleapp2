@@ -49,7 +49,7 @@ spec:
         stage('docker login') {
        steps {
            withCredentials([file(credentialsId: 'secret', variable: 'docker')]) {
-               sh 'use $docker'
+               sh 'use ${docker}'
   }
         }
     }
